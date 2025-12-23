@@ -1,11 +1,11 @@
-import { __ } from '@wordpress/i18n';
-import { search } from '@wordpress/icons';
-import { addFilter } from '@wordpress/hooks';
-import { BlockControls } from '@wordpress/block-editor';
-import { Fragment } from '@wordpress/element';
-import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
+import {__} from '@wordpress/i18n';
+import {search} from '@wordpress/icons';
+import {addFilter} from '@wordpress/hooks';
+import {BlockControls} from '@wordpress/block-editor';
+import {Fragment} from '@wordpress/element';
+import {ToolbarGroup, ToolbarButton} from '@wordpress/components';
 
-import { getAllowedBlocks, getShortcutEvent } from './utils';
+import {getAllowedBlocks, getShortcutEvent} from './utils';
 
 /**
  * Search & Replace Toolbar Icon.
@@ -19,34 +19,36 @@ import { getAllowedBlocks, getShortcutEvent } from './utils';
  * @param {Object} settings Original block settings
  * @return {Object}         Filtered block settings
  */
-export const SearchReplaceToolbarIcon = ( settings: any ): object => {
-	const { name, edit } = settings;
+export const SearchReplaceToolbarIcon = (settings: any): object => {
+	const {name, edit} = settings;
 
-	if ( getAllowedBlocks().indexOf( name ) === -1 ) {
+	if (getAllowedBlocks().indexOf(name) === -1) {
 		return settings;
 	}
 
-	settings.edit = ( props: any ) => {
+	settings.edit = (props: any) => {
 		return (
 			<Fragment>
 				<BlockControls>
 					<ToolbarGroup>
 						<ToolbarButton
-							icon={ search }
+							icon={search}
 							label="Edit"
-							onClick={ () => {
-								document.dispatchEvent( getShortcutEvent() );
-							} }
-							placeholder={ __(
+							onClick={() => {
+								document.dispatchEvent(getShortcutEvent());
+							}}
+							placeholder={__(
 								'Search & Replace',
 								'search-replace-for-block-editor'
-							) }
-							onPointerEnterCapture={ () => {} }
-							onPointerLeaveCapture={ () => {} }
+							)}
+							onPointerOverCapture={() => {
+							}}
+							onPointerMoveCapture={() => {
+							}}
 						/>
 					</ToolbarGroup>
 				</BlockControls>
-				{ edit( props ) }
+				{edit(props)}
 			</Fragment>
 		);
 	};
